@@ -34,6 +34,17 @@
                 "mobile": '',
             };
         };
+
+        function strongPassword() {
+            //check in controller
+        }
+
+        $scope.checkPwd = function () {
+            /*if ($scope.user.password && strongPassword($scope.user.password)) {
+                return false;
+            }*/
+            return $scope.user.password !== $scope.user.rePassword;
+        };
         /**
          * Singup method is exposed to resigter a user
          * @param isValid flag to check form is valid or not if not then show a message to user
@@ -71,6 +82,7 @@
             }
             $log.info('onLoad : regisitrationController');
         }
+
         onLoad();
     }
 

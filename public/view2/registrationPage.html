@@ -33,9 +33,12 @@
         <!-- Password -->
         <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
             <label>Password</label>
-            <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8" ng-maxlength="20">
+            <input type="password" ng-pattern="/^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/" name="password" class="form-control" ng-model="user.password" ng-minlength="8" ng-maxlength="20">
             <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
             <p ng-show="userForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+            <span style="color:orange" ng-show="!userForm.password.$valid">Password should be at least 8 characters
+                long and should contain one number,one character and one special
+                character</span>
         </div>
         <!-- Password -->
         <div class="form-group" ng-class="{ 'has-error' : userForm.rePassword.$invalid && !userForm.rePassword.$pristine }">
@@ -43,6 +46,7 @@
             <input type="password" name="rePassword" class="form-control" ng-model="user.rePassword" ng-minlength="8" ng-maxlength="20">
             <p ng-show="userForm.rePassword.$error.minlength" class="help-block">Password is too short.</p>
             <p ng-show="userForm.rePassword.$error.maxlength" class="help-block">Password is too long.</p>
+            <span ng-show="checkPwd()" style="color:red">Password not matched.</span>
         </div>
         <!-- Mobile Number -->
         <div class="form-group" ng-class="{ 'has-error' : userForm.mno.$invalid && !userForm.mno.$pristine }">
