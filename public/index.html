@@ -22,11 +22,12 @@
    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
    -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="lib/angular-http-status/angular-http-status.js"></script>
-  <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+  <script src="lib/angular-ui/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-cookies.js"></script>
   <script src="app.js"></script>
   <script src="services/apiService.js"></script>
@@ -48,13 +49,17 @@
   <script src="core/version/interpolate-filter.js"></script>
 </head>
 <body ng-controller="appController">
-<div class="header" ng-show="token">
-  <a href="#default" class="logo">Logo here</a>
-  <div class="header-right">
-    <button ng-click="logout()" class="btn btn-big" value="LogOut" > logout</button>
+<div class="header">
+<div class="btn" ng-click="path()" ng-show="token">HOME</div>
+  <div class="header-right" ng-show="token">
+    <div class="btn" ng-click="logout()"  value="LogOut" > logout</div>
   </div>
   <div class="header-right">
-    <button ng-click="signUp()" class="btn btn-big" value="signUp" > signUp</button>
+    <div class="register">
+      <div class="register-inner">
+        <div class="btn" ng-click="signUp()">Create an Account</div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 <div ng-controller="homeController">
     <div>
-        <table align="center" class="table table-bordered" ng-show="isAdmin()"><!-- check if role is Admin then show below table-->
+        <table align="center" class="table table-bordered" ng-show="isAdmin() && !viewDetailUp"><!-- check if role is Admin then show below table-->
             <thead>
             <th>S No</th>
             <th>Name</th>
@@ -15,11 +15,11 @@
             </tbody>
         </table>
     </div>
-    <div ng-show="isEditorRole()"><!--If role is View then show below div -->
+    <div ng-show="isEditorRole() || viewDetailsUp"><!--If role is View then show below div -->
         <h2 style="text-align:center">User Profile</h2>
 
         <div class="card">
-            <img src="/images/avtar.png" alt="avtar" style="width:100%">
+            <img src="/images/avtar.png" alt="avtar" style="width:50%">
             <h1>{{token.userName}}</h1>
             <p>{{token.mobile}}</p>
             <div style="margin: 24px 0;">
@@ -30,6 +30,5 @@
             </div>
             <p><button>Contact</button></p>
         </div>
-
     </div>
 </div>

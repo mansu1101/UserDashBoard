@@ -12,7 +12,17 @@ var app = angular.module('myApp', [
     'myApp.version',
 
 ]).config(['$locationProvider', '$routeProvider','$httpProvider', function ($locationProvider, $routeProvider,$httpProvider) {
+    function AuthenticateCb(AuthenticatorService) {
+        return AuthenticatorService.isAuthenticated();
+    }
+
     $routeProvider.otherwise({redirectTo: '/login'});
+    $routeProvider.when('/home', {
+        templateUrl: 'view3/home.html',
+        resolve: {
+            authenticate: ['AuthenticatorService', AuthenticateCb]
+        }
+    });
     $httpProvider.interceptors.push('apiInterceptorService');
 }]);
 
@@ -22,6 +32,9 @@ function appController($scope, $rootScope, AuthService, NavigationPath, $locatio
     };
     $scope.signUp = function () {
         $location.path(NavigationPath.REGISITOR);
+    };
+    $scope.path = function () {
+        $location.path(NavigationPath.HOME);
     };
     $rootScope.NavigationPath = NavigationPath;
 }

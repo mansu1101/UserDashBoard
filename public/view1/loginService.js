@@ -39,18 +39,12 @@
             };
 
             token = angular.toJson(tempObject);
-            console.log($cookies);
-            console.log(token);
-            $cookies.putObject('token', token);
-            $cookies.hello = {helloKey: "helloValue"};
 
-            console.log($cookies.hello);
+            //$cookies.putObject('token', token);
 
             //TODO: as cookies is not working i am storing into local storage
             localStorage.setItem('token', token);
-
-
-            $rootScope.token = angular.fromJson($cookies.getObject('token'));
+            //$rootScope.token = angular.fromJson($cookies.getObject('token'));
             //TODO: remove below code once cookies start working
             $rootScope.token = angular.fromJson(localStorage.getItem('token'));
             $log.info('user Role is : ', $rootScope.token.role);
@@ -69,7 +63,6 @@
             var deferred = $q.defer();
             var path = "login";
             apiService.post(path, userData).then(function (response) {
-                $log.info('user logged in successfully! now setting the token');
                 deferred.resolve(response);
             }, function (error) {
                 $log.error(error);

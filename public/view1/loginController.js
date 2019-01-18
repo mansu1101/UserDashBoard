@@ -31,20 +31,19 @@
      * @param loginService
      * @param $window
      */
-    function loginController($scope, loginService, $window, $location) {
+    function loginController($log, $scope, loginService, $window, $location) {
         $scope.user = {
             email: '',
             password: ''
         };
-        $scope.login = function (isValid){
-            console.log(isValid);
-            if (isValid &&  $scope.user.email &&  $scope.user.password ) {
+        $scope.login = function (isValid) {
+            if (isValid && $scope.user.email && $scope.user.password) {
                 var request = {
                     "email": $scope.user.email,
                     "password": $scope.user.password
                 };
                 loginService.login(request).then(function (response) {
-                    console.log(response);
+                    $log.info('user log in successfully!!');
                     loginService.setToken(response.data);
                     $location.path('/home');
                 }, function (error) {
@@ -60,6 +59,7 @@
     }
 
     var require = [
+        '$log',
         '$scope',
         'loginService',
         '$window',

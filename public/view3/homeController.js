@@ -19,36 +19,33 @@
 
     /**
      * Login Controller to handle login and store the token after login.
+     * @param $log
      * @param $scope
-     * @param loginService
+     * @param adminService call method like getToken/setToken
+     * @param $rootScope
      * @param $window
+     * @param $location
+     * @param homeService call method like getUers/userByname/
      */
-    function homeController($log, $scope, $dialog, adminService, $rootScope, $window, $location, homeService) {
-        $scope.userData;
+    function homeController($log, $scope, adminService, $rootScope, $window, $location, homeService) {
+        $scope.viewDetailUp= false;
         $rootScope.isAdmin = function () {
-            return $rootScope.token.role === "Admin";
+            return $rootScope.token && $rootScope.token.role === "Admin";
         };
         $scope.isEditorRole = function () {
-            return $rootScope.token.role === "Editor";
+            return $rootScope.token && $rootScope.token.role === "Editor";
         };
         var dialogOptions = {
             templateUrl: 'popups/editPopup.html'
         };
+
         $scope.showUserDetail = function (item) {
             $log.info('Getting details of ');
+            $scope.viewDetailUp = true;
             var itemToEdit = item;
-            $dialog.dialog(angular.extend(dialogOptions, {resolve: {item: angular.copy(itemToEdit)}}))
-                .open()
-                .then(function (result) {
-                    $log.info('Edit user popup opened', result);
-                    if (result) {
-                        $log.info('Edit user popup opened');
-                        angular.copy(result, itemToEdit);
-                    }
-                    itemToEdit = undefined;
-                });
         };
 
+        //Onload function will load the data which are required at the time of controller loading
         function onLoad() {
             $rootScope.token = adminService.getToken();
             if ($rootScope.isAdmin()) {
@@ -68,7 +65,6 @@
     var require = [
         '$log',
         '$scope',
-        '$dialog',
         'adminService',
         '$rootScope',
         '$window',

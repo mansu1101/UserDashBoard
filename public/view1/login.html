@@ -1,6 +1,8 @@
 <div ng-app="myApp.view1">
 <div class="login" ng-controller="LoginController">
+
     <form class="login-form" ng-submit="login(loginForm.$valid)"  name="loginForm">
+        <h2 align="center">Log in</h2>
         <span class="input-group input-group-lg" ng-class="{ 'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine }">
             <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
             <input type="email" name="email" ng-model="user.email" class="form-control" placeholder="Email" tabindex="1"/>
@@ -8,7 +10,7 @@
         </span>
         <span ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Not a valid Email</span>
         <span class="input-group input-group-lg">
-            <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+            <span class="input-group-addon"><span class="fa fa-key"></span></span>
             <input type="password" name="password" ng-model="user.password" class="form-control" id="password" required placeholder="Password" tabindex="2" />
         </span>
         <input type="submit" id="login" class="btn btn-primary fa-lg" value="Sign in" tabindex="3"/>

@@ -11,7 +11,7 @@
      * @param   {object}    $cookies
      * @returns {object}
      */
-    function ApiInterceptor($q, $rootScope, $routeParams, $location, $cookies,HttpCodes, Utils) {
+    function ApiInterceptor($log, $q, $window, $rootScope, $routeParams, $location, $cookies, HttpCodes, Utils) {
         var excludeUrl = [
             '/login'
         ];
@@ -25,15 +25,7 @@
          */
         function errorHandler(errorData) {
             // var userMessage = errorData.userMessage;
-            // NotifierService.notify(userMessage, NotifierService.ERROR);
-
-            /*if (errorData.status !== Configuration.HTTP_STATUS_OK) {
-                Configuration.RESTRICTED_PAGES.forEach(function (url) {
-                    if (errorData.config.url.includes(url)) {
-                        document.write(errorData.data);
-                    }
-                });
-            }*/
+            // notifierService.notify(userMessage, notifierService.ERROR);
         }
 
         /**
@@ -46,9 +38,9 @@
                 now = new Date(),
                 exp = new Date(now.setTime(now.getTime() + Number(2) * 60 * 60 * 1000)),
                 oldToken = angular.fromJson($cookies.getObject('token'));
-                //TODO: remove below line once cookies stable
-                oldToken = angular.fromJson(localStorage.getItems('token'));
-                console.log('refreshing cookies',(headers['authorization'] && oldToken) );
+            //TODO: remove below line once cookies stable
+            //  oldToken = angular.fromJson(localStorage.getItems('token'));
+            $log.info('refreshing cookies', (headers['authorization'] && oldToken));
             if (headers['authorization'] && oldToken) {
                 //converting the object to json string cause cookies does not allow objects...
                 var token = angular.toJson({
@@ -90,7 +82,7 @@
          * @param response object sent from backend.
          */
         this.response = function (response) {
-           // refreshCookie(response);// getting error while loading the page
+            // refreshCookie(response);// getting error while loading the page
             return response;
         };
 
@@ -99,37 +91,46 @@
          * @returns {*}
          */
         this.responseError = function (response) {
-            //do stuff here
-            console.log('Error response', response);
-            if ($rootScope.NavigationPath === undefined) {
-                throw {
-                    name: 'ConfigurationMissing',
-                    message: 'Navigation path is not provided.'
-                };
-            }
+            $log.info('Response Error : ', response);
+
             if (response.status === HttpCodes.UNAUTHORIZED) {
-                var token = $cookies.getObject('token');
-                 token = localStorage.getItem('token');
+                if ($rootScope.NavigationPath === undefined) {
+                    throw {
+                        name: 'ConfigurationMissing',
+                        message: 'Navigation path is not provided.'
+                    };
+                }
+                //var token = $cookies.getObject('token');
+                localStorage.removeItem('token');
                 //Do not display this notification if user is trying to login.
                 // Error response handler for login api will display 'INVALID_CREDENTIALS' message instead.
-
-                    if (response.status === HttpCodes.SERVICE_UNAVAILABLE) {
-                        NotifierService.error(response.data._error.name);
-                    }
-                }
-
+                $window.alert(response.data._message);
+                return $q.reject();
+            }
+            if(response.status === HttpCodes.UNPROCESSABLE_ENTITY){
+                $window.alert(response.data._message);
+            }
+            if (response.status === HttpCodes.SERVICE_UNAVAILABLE) {
+                //notifierService.error(response.data._error.name);
+                $window.alert(response.data._message);
+                $log.error(response.data._error.name);
+                $location.path($rootScope.NavigationPath.LOGIN);
+            }
         };
     }
 
     var app = angular.module('myApp'),
         requires = [
+            '$log',
             '$q',
+            '$window',
             '$rootScope',
             '$routeParams',
             '$location',
             '$cookies',
             'HttpCodes',
             'utilityService',
+            //'notifierService',
             ApiInterceptor
         ];
 
