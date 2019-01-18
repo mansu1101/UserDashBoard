@@ -1,0 +1,12 @@
+<div class="modal-header" ng-controller="popupController">
+    <h1>Edit </h1>
+</div>
+<div class="modal-body">
+    <p><input ng-model="item.username" /></p>
+    <p><input ng-model="item.mobile" /></p>
+    <p><input ng-model="item.email" /></p>
+</div>
+<div class="modal-footer">
+    <button ng-click="save()" class="btn btn-primary" >Save</button>
+    <button ng-click="close()" class="btn" >close</button>
+</div>

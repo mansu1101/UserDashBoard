@@ -1,0 +1,67 @@
+<head>
+<style>
+    body     { padding-top:30px; }
+</style>
+</head>
+<body>
+<div class="container" ng-controller="registrationController">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header"><h1>Singup</h1></div>
+
+    <!-- =================================================================== -->
+    <!-- FORM ============================================================== -->
+    <!-- =================================================================== -->
+
+    <!-- pass in the variable if our form is valid or invalid -->
+    <form name="userForm" ng-submit="signUp(userForm.$valid)" novalidate>
+
+        <!-- NAME -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+            <label>Username*</label>
+            <input type="text" name="name" class="form-control" ng-model="user.name" required>
+            <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="user.email">
+            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8" ng-maxlength="20">
+            <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
+            <p ng-show="userForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+        </div>
+        <!-- Password -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.rePassword.$invalid && !userForm.rePassword.$pristine }">
+            <label>Re-Password</label>
+            <input type="password" name="rePassword" class="form-control" ng-model="user.rePassword" ng-minlength="8" ng-maxlength="20">
+            <p ng-show="userForm.rePassword.$error.minlength" class="help-block">Password is too short.</p>
+            <p ng-show="userForm.rePassword.$error.maxlength" class="help-block">Password is too long.</p>
+        </div>
+        <!-- Mobile Number -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.mno.$invalid && !userForm.mno.$pristine }">
+            <label>Mobile Number</label>
+            <input type="number" name="mno" class="form-control" ng-model="user.mno" ng-minlength="6" ng-maxlength="10">
+            <p ng-show="userForm.mno.$error.minlength" class="help-block">Not a valid number</p>
+            <p ng-show="userForm.mno.$error.maxlength" class="help-block">Not a valid number</p>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+            <label>Role</label>
+            <select ng-model="selectedRole" ng-options="x for x in roles">
+            </select>
+        </div>
+
+        <button type="submit"  class="btn btn-primary">Submit</button>
+
+    </form>
+
+</div>
+</body>

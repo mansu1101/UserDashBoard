@@ -1,0 +1,25 @@
+{
+  "name": "UserDashBoard",
+  "version": "1.0.0",
+  "description": "Node.js scalable server for UserDashBoard application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mansu1101/UserDashBoard.git"
+  },
+  "author": "Manish Joshi",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.0.8",
+    "ajv": "^6.5.0",
+    "bcrypt": "^2.0.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mongodb": "^3.1.0-beta4",
+    "morgan": "^1.9.0"
+  }
+}

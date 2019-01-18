@@ -1,0 +1,39 @@
+{
+  "name": "angular-http-status",
+  "version": "0.1.1",
+  "authors": [
+    "Yllieth <sylvnimes@hotmail.com>"
+  ],
+  "description": "Convenience constant and factory to deal with HTTP status code",
+  "keywords": [
+    "angular",
+    "http",
+    "status",
+    "code"
+  ],
+  "private": false,
+  "license": "DBAD",
+  "dependencies": {
+    "angular": ">=1.x"
+  },
+  "main": "angular-http-status.js",
+  "ignore": [
+    ".*",
+    "bower.json",
+    "package.json",
+    "app/",
+    "test/",
+    "bower_components/",
+    "node_modules/"
+  ],
+  "homepage": "https://github.com/yllieth/angular-http-status",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "f2ab736f191e3a545e5bc7bf90af460c5aada8da"
+  },
+  "_source": "https://github.com/yllieth/angular-http-status.git",
+  "_target": "0.1.1",
+  "_originalSource": "angular-http-status"
+}

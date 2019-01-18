@@ -1,0 +1,35 @@
+<div ng-controller="homeController">
+    <div>
+        <table align="center" class="table table-bordered" ng-show="isAdmin()"><!-- check if role is Admin then show below table-->
+            <thead>
+            <th>S No</th>
+            <th>Name</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in userData track by $index">
+                <td>{{$index +1}}</td>
+                <td><div>{{ x.username }}</div></td>
+                <td><button class="btn btn-small" ng-click="showUserDetail(x)">details</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="isEditorRole()"><!--If role is View then show below div -->
+        <h2 style="text-align:center">User Profile</h2>
+
+        <div class="card">
+            <img src="/images/avtar.png" alt="avtar" style="width:100%">
+            <h1>{{token.userName}}</h1>
+            <p>{{token.mobile}}</p>
+            <div style="margin: 24px 0;">
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+            </div>
+            <p><button>Contact</button></p>
+        </div>
+
+    </div>
+</div>
