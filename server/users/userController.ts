@@ -2,7 +2,8 @@ import {ErrorResponse} from "../responseManager/errorResponse";
 import {ResponseManager} from "../responseManager/responseManager";
 import {User} from "./user";
 import {UserService} from "./userService";
-let log = require("../../server/config/logger.js").LOG;
+let logger = require("../../server/config/logger.js");
+let log = logger.LOG;
 
 export class UserController {
     private responseManager: ResponseManager = new ResponseManager();

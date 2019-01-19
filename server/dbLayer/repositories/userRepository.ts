@@ -59,7 +59,7 @@ export class UserRepository {
                         log.error("getUser : unable to get the user : ", errorResponse);
                         return next(errorResponse, null);
                     }
-                    log.debug("getUser : User Retrivied Successfully : ", result._id);
+                    log.debug("getUser : User Retrivied Successfully : ");
                     return next(null, result);
                 });
             } catch (ex) {
