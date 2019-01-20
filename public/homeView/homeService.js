@@ -12,11 +12,11 @@
      * @constructor
      */
 
-    function homeService($q, $log, $rootScope, $http,adminService, apiService) {
+    function homeService($q, $log, $rootScope, $http, adminService, apiService) {
 
-    function getUsers(Id) {
-       return adminService.getUsers(Id);
-    }
+        function getUsers(Id) {
+            return adminService.getUsers(Id);
+        }
 
         return {
             getUsers: getUsers

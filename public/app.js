@@ -7,20 +7,21 @@ var app = angular.module('myApp', [
     'ngCookies',
     'ngHttpStatus',
     'myApp.loginView',
-    'myApp.view2',
-    'myApp.view3',
+    'myApp.signUpView',
+    'myApp.homeView',
     'myApp.version',
 
-]).config(['$locationProvider', '$routeProvider','$httpProvider', function ($locationProvider, $routeProvider,$httpProvider) {
+]).config(['$locationProvider', '$routeProvider', '$httpProvider', function ($locationProvider, $routeProvider, $httpProvider) {
     function AuthenticateCb(AuthenticatorService) {
         return AuthenticatorService.isAuthenticated();
     }
+
     $locationProvider.html5Mode({
         requireBase: false
     });
     $routeProvider.otherwise({redirectTo: '/login'});
     $routeProvider.when('/home', {
-        templateUrl: 'view3/home.html',
+        templateUrl: 'homeView/home.html',
         title: 'View Users',
         resolve: {
             authenticate: ['AuthenticatorService', AuthenticateCb]
@@ -33,15 +34,13 @@ function appController($scope, $rootScope, AuthService, NavigationPath, $locatio
     $scope.logout = function () {
         AuthService.destroyAuth();
     };
-    $scope.signUp = function () {
-        $location.path(NavigationPath.REGISITOR);
-    };
-    $scope.path = function () {
-            $rootScope.viewDetailUp = false;
-            $location.path(NavigationPath.HOME);
+    $scope.path = function (path) {
+        $rootScope.viewDetailUp = false;
+        $location.path(NavigationPath[path]);
     };
     $rootScope.NavigationPath = NavigationPath;
 }
+
 var require = [
     '$scope',
     '$rootScope',

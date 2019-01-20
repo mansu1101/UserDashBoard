@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    var app = angular.module('myApp.view3', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
+    var app = angular.module('myApp.homeView', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
         function AuthenticateCb(AuthenticatorService) {
             return AuthenticatorService.isAuthenticated();
         }
 
         $routeProvider.when('/home', {
-            templateUrl: 'view3/home.html',
+            templateUrl: 'homeView/home.html',
             title: "User Details",
             resolve: {
                 authenticate: ['AuthenticatorService', AuthenticateCb]
@@ -15,7 +15,7 @@
         });
         $routeProvider.when('/signUp', {
             title: "Signup",
-            templateUrl: 'view2/registrationPage.html'
+            templateUrl: 'signUpView/registrationPage.html'
         });
     }]);
 
@@ -31,18 +31,21 @@
      */
     function homeController($log, $scope, adminService, $rootScope, $window, $location, homeService) {
         $rootScope.viewDetailUp = false;
+
         $rootScope.isAdmin = function () {
             return $rootScope.token && $rootScope.token.role === "Admin";
         };
+
         $scope.isEditorRole = function () {
             if ($rootScope.token && $rootScope.token.role === "Editor") {
-                $scope.user = {username: $rootScope.token.userName, mobile: $rootScope.token.mobile};
+                $scope.user = {
+                    username: $rootScope.token.userName,
+                    mobile: $rootScope.token.mobile,
+                    role: $rootScope.token.role
+                };
                 return true;
             }
             return false;
-        };
-        var dialogOptions = {
-            templateUrl: 'popups/editPopup.html'
         };
 
         $scope.showUserDetail = function (item) {

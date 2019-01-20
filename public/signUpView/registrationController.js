@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    var app = angular.module('myApp.view2', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
+    var app = angular.module('myApp.signUpView', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/signUp', {
             title: "SignUp",
-            templateUrl: 'view2/registrationPage.html',
+            templateUrl: 'signUpView/registrationPage.html',
             controller: 'registrationController'
         });
         $routeProvider.when('/login', {
@@ -76,10 +76,15 @@
          */
         function onLoad() {
             $rootScope.token = adminService.getToken();
-            if ($rootScope.token && $rootScope.token.role !== "Admin") {
+            if (($rootScope.token) && $rootScope.token.role === "Editor") {
                 var index = $scope.roles.indexOf("Admin");
                 if (index > -1) {
                     $scope.roles.splice(index, 1);
+                }
+            } else if (!$rootScope.token) {
+                var index1 = $scope.roles.indexOf("Admin");
+                if (index1 > -1) {
+                    $scope.roles.splice(index1, 1);
                 }
             }
             $log.info('onLoad : regisitrationController');

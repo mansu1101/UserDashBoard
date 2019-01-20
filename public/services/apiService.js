@@ -1,12 +1,18 @@
 (function () {
     'use strict';
 
+    /***
+     * This service is end point for the client. all the calls for http/ server will send by this service
+     * @param $http
+     * @returns {{post: (function(*, *=): *), get: (function(*): *), del: (function(*, *=): *), put: (function(*, *=):
+     * (*|HttpPromise|IDBRequest<IDBValidKey>|Promise<void>))}}
+     */
     function apiService($http) {
         var baseUrl = "http://localhost:5555";
 
-        function get(path, data) {
+        function get(path) {
             var url = baseUrl + '/' + path;
-            return $http.get(url, data);
+            return $http.get(url);
         }
 
         function post(path, data) {

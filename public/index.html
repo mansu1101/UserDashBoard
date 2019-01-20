@@ -40,24 +40,31 @@
   <script src="services/apiInterceptorService.js"></script>
   <script src="loginView/loginController.js"></script>
   <script src="loginView/loginService.js"></script>
-  <script src="view2/registrationController.js"></script>
+  <script src="signUpView/registrationController.js"></script>
   <script src="controllers/popupController.js"></script>
-  <script src="view3/homeController.js"></script>
-  <script src="view3/homeService.js"></script>
+  <script src="homeView/homeController.js"></script>
+  <script src="homeView/homeService.js"></script>
   <script src="core/version/version.js"></script>
   <script src="core/version/version-directive.js"></script>
   <script src="core/version/interpolate-filter.js"></script>
 </head>
 <body ng-controller="appController">
 <div class="header">
-<div class="btn" ng-click="path()" ng-show="token">HOME</div>
+<div class="btn" ng-click="path('HOME')" ng-show="token">HOME</div>
   <div class="header-right" ng-show="token">
     <div class="btn" ng-click="logout()"  value="LogOut" > logout</div>
   </div>
   <div class="header-right">
     <div class="register">
       <div class="register-inner">
-        <div class="btn" ng-click="signUp()">Create an Account</div>
+        <div class="btn" ng-click="path('REGISITOR')">Create an Account</div>
+      </div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="register">
+      <div class="register-outer">
+        <div class="btn" ng-click="path('LOGIN')">Login</div>
       </div>
     </div>
   </div>

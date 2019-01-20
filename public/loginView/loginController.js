@@ -17,11 +17,11 @@
         });
         $routeProvider.when('/singUp', {
             title: "SignUp",
-            templateUrl: 'view2/registrationPage.html'
+            templateUrl: 'signUpView/registrationPage.html'
         });
         $routeProvider.when('/home', {
             title: "User details",
-            templateUrl: 'view3/home.html',
+            templateUrl: 'homeView/home.html',
             resolve: {
                 authenticate: ['AuthenticatorService', AuthenticateCb]
             }
