@@ -35,9 +35,9 @@
             return $rootScope.token && $rootScope.token.role === "Admin";
         };
         $scope.isEditorRole = function () {
-            if ($rootScope.token) {
+            if ($rootScope.token && $rootScope.token.role === "Editor") {
                 $scope.user = {username: $rootScope.token.userName, mobile: $rootScope.token.mobile};
-                return $rootScope.token && $rootScope.token.role === "Editor";
+                return true;
             }
             return false;
         };

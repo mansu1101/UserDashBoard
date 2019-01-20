@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('myApp.view1', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
+    var app = angular.module('myApp.loginView', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
         /**
          * A callback to authenticate routes navigation.
          * @param   {Object} AuthenticatorService
@@ -13,7 +13,7 @@
 
         $routeProvider.when('/login', {
             title: "Login",
-            templateUrl: 'view1/login.html'
+            templateUrl: 'loginView/login.html'
         });
         $routeProvider.when('/singUp', {
             title: "SignUp",

@@ -9,7 +9,7 @@
         });
         $routeProvider.when('/login', {
             title: "Login",
-            templateUrl: 'view1/login.html'
+            templateUrl: 'loginView/login.html'
         });
     }]);
 

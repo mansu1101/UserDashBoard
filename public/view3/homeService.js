@@ -24,7 +24,7 @@
 
     }
 
-    var app = angular.module('myApp.view1'),
+    var app = angular.module('myApp.loginView'),
         requires = [
             '$q',
             '$log',

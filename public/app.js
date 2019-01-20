@@ -6,7 +6,7 @@ var app = angular.module('myApp', [
     'ui.bootstrap',
     'ngCookies',
     'ngHttpStatus',
-    'myApp.view1',
+    'myApp.loginView',
     'myApp.view2',
     'myApp.view3',
     'myApp.version',
