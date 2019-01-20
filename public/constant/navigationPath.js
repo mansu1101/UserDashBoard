@@ -13,6 +13,6 @@
     app.constant('NavigationPath', {
         HOME: '/home',
         LOGIN: '/login',
-        REGISITOR: '/view2'
+        REGISITOR: '/signUp'
     });
 }());

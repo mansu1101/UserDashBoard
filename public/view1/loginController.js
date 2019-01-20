@@ -12,12 +12,15 @@
         }
 
         $routeProvider.when('/login', {
+            title: "Login",
             templateUrl: 'view1/login.html'
         });
         $routeProvider.when('/singUp', {
+            title: "SignUp",
             templateUrl: 'view2/registrationPage.html'
         });
         $routeProvider.when('/home', {
+            title: "User details",
             templateUrl: 'view3/home.html',
             resolve: {
                 authenticate: ['AuthenticatorService', AuthenticateCb]

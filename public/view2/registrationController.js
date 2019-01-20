@@ -2,11 +2,13 @@
     'use strict';
 
     var app = angular.module('myApp.view2', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view2', {
+        $routeProvider.when('/signUp', {
+            title: "SignUp",
             templateUrl: 'view2/registrationPage.html',
             controller: 'registrationController'
         });
         $routeProvider.when('/login', {
+            title: "Login",
             templateUrl: 'view1/login.html'
         });
     }]);

@@ -8,11 +8,13 @@
 
         $routeProvider.when('/home', {
             templateUrl: 'view3/home.html',
+            title: "User Details",
             resolve: {
                 authenticate: ['AuthenticatorService', AuthenticateCb]
             }
         });
         $routeProvider.when('/signUp', {
+            title: "Signup",
             templateUrl: 'view2/registrationPage.html'
         });
     }]);
@@ -28,12 +30,16 @@
      * @param homeService call method like getUers/userByname/
      */
     function homeController($log, $scope, adminService, $rootScope, $window, $location, homeService) {
-        $scope.viewDetailUp= false;
+        $rootScope.viewDetailUp = false;
         $rootScope.isAdmin = function () {
             return $rootScope.token && $rootScope.token.role === "Admin";
         };
         $scope.isEditorRole = function () {
-            return $rootScope.token && $rootScope.token.role === "Editor";
+            if ($rootScope.token) {
+                $scope.user = {username: $rootScope.token.userName, mobile: $rootScope.token.mobile};
+                return $rootScope.token && $rootScope.token.role === "Editor";
+            }
+            return false;
         };
         var dialogOptions = {
             templateUrl: 'popups/editPopup.html'
@@ -41,8 +47,8 @@
 
         $scope.showUserDetail = function (item) {
             $log.info('Getting details of ');
-            $scope.viewDetailUp = true;
-            var itemToEdit = item;
+            $rootScope.viewDetailUp = true;
+            $scope.user = item;
         };
 
         //Onload function will load the data which are required at the time of controller loading

@@ -15,10 +15,13 @@ var app = angular.module('myApp', [
     function AuthenticateCb(AuthenticatorService) {
         return AuthenticatorService.isAuthenticated();
     }
-
+    $locationProvider.html5Mode({
+        requireBase: false
+    });
     $routeProvider.otherwise({redirectTo: '/login'});
     $routeProvider.when('/home', {
         templateUrl: 'view3/home.html',
+        title: 'View Users',
         resolve: {
             authenticate: ['AuthenticatorService', AuthenticateCb]
         }
@@ -34,7 +37,8 @@ function appController($scope, $rootScope, AuthService, NavigationPath, $locatio
         $location.path(NavigationPath.REGISITOR);
     };
     $scope.path = function () {
-        $location.path(NavigationPath.HOME);
+            $rootScope.viewDetailUp = false;
+            $location.path(NavigationPath.HOME);
     };
     $rootScope.NavigationPath = NavigationPath;
 }
